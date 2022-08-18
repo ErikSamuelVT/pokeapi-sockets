@@ -42,26 +42,51 @@ function App() {
     getPokemon()
 
     socket.on('click',(message)=>{
-      toast(`${message}!`);
+      toast(`${message}!`, {
+        position: "top-right",
+        autoClose: 2500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
     })
   
     return () => {
       socket.off('click',(message)=>{
-        console.log(message);
+        toast(`${message}!`, {
+          position: "top-right",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
       })
     }
 
   }, [])
 
   const handleClick = () => {
-    socket.emit('click','Pokemon atrapado')
+    socket.emit('click',`${pokemon.name} capturado!`)
+    toast(`${pokemon.name} capturado!`, {
+      position: "top-right",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
   }
 
   const getPokemon = async () => {
-    const info = await fetch(`https://pokeapi.co/api/v2/pokemon/charmander`)
+    const info = await fetch(`https://pokeapi.co/api/v2/pokemon/${numRandom()}`)
     const data = await info.json();
 
-    const infoPokemon: pokemon = {
+  const infoPokemon: pokemon = {
       img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${data.id}.png`,
       imgJuego: data.sprites.front_default,
       imgCvg: data.sprites.other.dream_world.front_default,
@@ -109,7 +134,17 @@ function App() {
         </div>
         <div className='btn-footer'>
           <button className='btn' onClick={handleClick}>ATRAPAR</button>
-          <ToastContainer/>
+          <ToastContainer
+            position="top-right"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </div>
       </article>
     </main>

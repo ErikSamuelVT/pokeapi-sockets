@@ -16,9 +16,7 @@ appExpress.use(cors())
 appExpress.use(morgan('dev'))
 
 io.on('connection', (socket) => {
-    console.log(`A user connected with id ${socket.id}`);
     socket.on('click', (message)=>{
-        console.log(message);
         socket.broadcast.emit('click',message)
     })
 })
