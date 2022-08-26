@@ -137,16 +137,4 @@ body {
   color: white;
 }
 
-.btn:hover{
-  background-color: white;
-  border: 1px solid #19a2ae;
-  cursor: pointer;
-  border-radius: 20px;
-  font-size: 20px;
-  width: 80%;
-  padding: 5px;
-  margin: 10px;
-  color: #19a2ae;
-}
-
 /*# sourceMappingURL=estilos.css.map */
